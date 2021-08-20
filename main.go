@@ -19,9 +19,19 @@ type contactForm struct {
 }
 
 func main(){
+
+  config := config.GetConfig()
+
+  app := &app.App{}
+  app.Initialize(config)
+  port, err := os.Getenv("PORT")
+  if err != nil {
+      port = "3000"
+  } 
+
+  app.Run(":"+port)
   
   templates = template.Must(template.ParseGlob("templates/*.html"))
-  
   
   r := mux.NewRouter()
   r.HandleFunc("/", ResumeHandler).Methods("GET")
