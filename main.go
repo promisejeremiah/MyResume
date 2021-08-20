@@ -4,6 +4,7 @@ package main
 
 import(
   "os"
+  "strconv"
   "log"
   "net/http"
   "net/smtp"
@@ -47,8 +48,7 @@ func main(){
   http.Handle("/", r)
   
   log.Println("Server is Listening...")
-  log.Fatal(http.ListenAndServe(":8000", r))
-  r.Run(":" + port)
+  log.Fatal(http.ListenAndServe(":" + port, r))
 }
 
 
