@@ -3,6 +3,7 @@
 package main
 
 import(
+  "os"
   "log"
   "net/http"
   "net/smtp"
@@ -20,16 +21,18 @@ type contactForm struct {
 
 func main(){
 
-  config := config.GetConfig()
+  port := os.Getenv("PORT")
 
-  app := &app.App{}
-  app.Initialize(config)
-  port, err := os.Getenv("PORT")
-  if err != nil {
-      port = "3000"
-  } 
+    if port == "" {
+        log.Fatal("$PORT must be set")
+    }
 
-  app.Run(":"+port)
+    tStr := os.Getenv("REPEAT")
+    repeat, err := strconv.Atoi(tStr)
+    if err != nil {
+        log.Printf("Error converting $REPEAT to an int: %q - Using default\n", err)
+        repeat = 5
+    }
   
   templates = template.Must(template.ParseGlob("templates/*.html"))
   
@@ -45,6 +48,7 @@ func main(){
   
   log.Println("Server is Listening...")
   log.Fatal(http.ListenAndServe(":8000", r))
+  r.Run(":" + port)
 }
 
 
