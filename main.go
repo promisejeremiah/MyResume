@@ -4,7 +4,6 @@ package main
 
 import(
   "os"
-  "strconv"
   "log"
   "net/http"
   "net/smtp"
