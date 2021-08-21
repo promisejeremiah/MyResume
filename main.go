@@ -54,11 +54,11 @@ func Send(w http.ResponseWriter, r *http.Request) {
   }
   json.NewDecoder(r.Body).Decode(c)
   
-  to := "gerepromise@gmail.com"
+  to := "jeremiahp994@gmail.com"
   subject := "NEW CONTACT"
   body := "To: " + to + "\r\nSubject: " + subject + "\r\n\r\n" + "Email: " + c.Email + "\r\n\r\n" + "Comment: " + c.Comment
-  auth := smtp.PlainAuth("", "gerepromise@gmail.com", "Imadeit55", "smtp.gmail.com")
-  err := smtp.SendMail("smtp.gmail.com:587", auth, "gerepromise@gmail.com", []string{to},[]byte(body))
+  auth := smtp.PlainAuth("", "jeremiahp994@gmail.com", "Imadeit55", "smtp.gmail.com")
+  err := smtp.SendMail("smtp.gmail.com:587", auth, "jeremiahp994@gmail.com", []string{to},[]byte(body))
   if err != nil {
     log.Println("attempting to send mail", err)
   }
