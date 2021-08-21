@@ -63,14 +63,18 @@
     <div class="b">
       <p><i><strong>I made this Interactive Resume using my Huawei Y5 Android phone. <br> If i fit into your description of job, </strong></i><br><h3> kindly write me here.</h3></p>
     </div>
-    <div class="c">
-      <form action="/Send" method="POST">
+    <form class="c" action="/Send" method="POST">
+      <div>
         <label for="fname">Email Address:</label><br>
         <input type="email" id="email" name="email"><br>
+      </div>
+      <div>
         <label for="txtarea">Comments</label><br>
-        <textarea id="textarea" name="content"></textarea><br>
-        <button class="button" type="submit">Submit</button>
-      </form>
-    </div>
+        <textarea id="textarea" name="comment"></textarea><br>
+      </div>
+      <div>
+      <button class="button" type="submit">Submit</button>
+      </div>
+    </form>
   </body>
 </html>
