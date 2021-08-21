@@ -4,6 +4,7 @@ package main
 
 import(
   "os"
+  "fmt" 
   "log"
   "net/http"
   "net/smtp"
@@ -46,7 +47,11 @@ func ResumeHandler(w http.ResponseWriter, r *http.Request) {
 
 
 func Send(w http.ResponseWriter, r *http.Request) {
-  c := &contactForm{}
+  r.ParseForm()
+  c := &contactForm{
+    Email: r.FormValue("email")
+    Comment: r.FormValue("comment")
+  }
   json.NewDecoder(r.Body).Decode(c)
   
   to := "gerepromise@gmail.com"
@@ -58,6 +63,7 @@ func Send(w http.ResponseWriter, r *http.Request) {
     log.Println("attempting to send mail", err)
   }
   http.Redirect(w, r, "/Confirmation", 302)
+  fmt.Println("email sent")
 }
 
 
