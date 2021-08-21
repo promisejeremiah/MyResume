@@ -49,8 +49,8 @@ func ResumeHandler(w http.ResponseWriter, r *http.Request) {
 func Send(w http.ResponseWriter, r *http.Request) {
   r.ParseForm()
   c := &contactForm{
-    Email: r.FormValue("email")
-    Comment: r.FormValue("comment")
+    Email: r.FormValue("email"),
+    Comment: r.FormValue("comment"),
   }
   json.NewDecoder(r.Body).Decode(c)
   
