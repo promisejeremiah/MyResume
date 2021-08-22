@@ -32,7 +32,7 @@ func main(){
   r.HandleFunc("/Confirmation", Confirmation).Methods("GET")
   
   fs := http.FileServer(http.Dir("./static/"))
-  r.PathPrefix("/static/").Handler(http.StripPrefix("/static", fs))
+  r.PathPrefix("/static/").Handler(http.StripPrefix("/static/", fs))
   
   http.Handle("/", r)
   
